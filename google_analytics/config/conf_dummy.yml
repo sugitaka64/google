@@ -1,0 +1,11 @@
+google_analytics:
+  tid: 'UA-XXXXX-X'
+  view_id: 'XXXXX'
+  client_id_dimension: 'ga:dimensionX'
+  app_id_dimension: 'ga:dimensionX'
+  start_date: 'yesterday'
+  end_date: 'yesterday'
+google_bigquery:
+  project_id: 'XXXXX'
+  dataset_id: 'XXXXX'
+  table_id: 'XXXXX'
