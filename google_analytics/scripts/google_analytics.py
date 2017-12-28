@@ -84,9 +84,30 @@ if __name__ == '__main__':
     df.to_csv(csv_file_path, index=False, header=True)
 
     # send BigQuery
+    # set up
     bigquery_client = bigquery.Client(project=project_id)
     dataset = bigquery_client.dataset(dataset_id)
     table = dataset.table(table_id)
+
+    # check table
+    table_list = bigquery_client.list_dataset_tables(dataset)
+    table_exists_flg = 0
+    for existed_table in table_list:
+        if existed_table.table_id == table_id:
+            table_exists_flg = 1
+            break
+
+    if table_exists_flg == 0:
+        # create table
+        schema = [
+            bigquery.SchemaField('tid', 'STRING', mode='required'),
+            bigquery.SchemaField('client_id', 'STRING', mode='required'),
+            bigquery.SchemaField('application_id', 'STRING', mode='required'),
+            bigquery.SchemaField('created_at', 'TIMESTAMP', mode='required'),
+        ]
+        table_ref = bigquery.Table(table, schema=schema)
+        bigquery_client.create_table(table_ref)
+
     # config
     job_config = bigquery.LoadJobConfig()
     job_config.source_format = 'CSV'
