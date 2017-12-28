@@ -62,3 +62,9 @@ $ pipenv run python scripts/google_analytics.py \
 
 * app_id_client_id 
   * 各カラムの内容は、出力ファイルと同様なのでそちらを参照
+
+## unittest
+
+```shell-session
+$ pipenv run python -m unittest tests/test_get_data_from_google_analytics.py
+```

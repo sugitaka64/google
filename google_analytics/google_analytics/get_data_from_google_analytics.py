@@ -99,7 +99,7 @@ class GetDataFromGoogleAnalytics(object):
 
     def response_to_list(
         self,
-        response: object,
+        response: dict,
     ) -> list:
         """Parse response from Analytics Reporting API V4."""
         for report in response.get('reports', []):
