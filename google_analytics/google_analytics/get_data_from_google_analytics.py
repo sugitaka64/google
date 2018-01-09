@@ -92,6 +92,7 @@ class GetDataFromGoogleAnalytics(object):
                             {'name': self.app_id_dimension},
                             {'name': self.client_id_dimension},
                         ],
+                        'samplingLevel': 'LARGE',
                     }
                 ]
             }
