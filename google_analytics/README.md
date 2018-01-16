@@ -74,5 +74,5 @@ $ pipenv run python scripts/google_analytics.py \
 ## unittest
 
 ```shell-session
-$ pipenv run python -m unittest tests/test_get_data_from_google_analytics.py
+$ pipenv run python -m unittest tests/*.py
 ```
