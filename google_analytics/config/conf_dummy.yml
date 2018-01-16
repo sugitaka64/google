@@ -1,10 +1,17 @@
 google_analytics:
+  data_from: '1'
   tid: 'UA-XXXXX-X'
-  view_id: 'XXXXX'
-  client_id_dimension: 'ga:dimensionX'
-  app_id_dimension: 'ga:dimensionX'
-  start_date: 'yesterday'
-  end_date: 'yesterday'
+  ga:
+    view_id: 'XXXXX'
+    client_id_dimension: 'ga:dimensionX'
+    app_id_dimension: 'ga:dimensionX'
+    start_date: 'yesterday'
+    end_date: 'yesterday'
+  bq:
+    project_id: 'XXXXX'
+    dataset_id: 'XXXXX'
+    client_id_dimension: 'X'
+    app_id_dimension: 'X'
 google_bigquery:
   project_id: 'XXXXX'
   dataset_id: 'XXXXX'

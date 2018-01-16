@@ -103,22 +103,26 @@ class GetDataFromGoogleAnalytics(object):
         response: dict,
     ) -> list:
         """Parse response from Analytics Reporting API V4."""
-        for report in response.get('reports', []):
+        ret = []
+
+        for report in response.get('reports', {}):
             column_header = report.get('columnHeader', {})
             dimension_headers = column_header.get('dimensions', [])
             rows = report.get('data', {}).get('rows', [])
+            if len(dimension_headers) == 0 or len(rows) == 0:
+                continue
 
-        ret = []
-        for row in rows:
-            tmp = {}
-            dimensions = row.get('dimensions', [])
+            for row in rows:
+                tmp = {}
+                dimensions = row.get('dimensions', [])
 
-            for header, dimension in zip(dimension_headers, dimensions):
-                if header == self.client_id_dimension:
-                    tmp['client_id'] = dimension
-                else:
-                    tmp['application_id'] = dimension
+                for header, dimension in zip(dimension_headers, dimensions):
+                    if header == self.client_id_dimension:
+                        tmp['client_id'] = dimension
+                    else:
+                        tmp['application_id'] = dimension
 
-            ret.append(tmp)
+                if len(tmp) > 0:
+                    ret.append(tmp)
 
         return ret
